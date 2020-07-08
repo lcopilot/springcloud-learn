@@ -55,12 +55,6 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>cn.hutool</groupId>
-      <artifactId>hutool-all</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
 </project>
