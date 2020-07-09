@@ -5,6 +5,7 @@ import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
@@ -70,6 +71,21 @@ public class PaymentController {
 					+ instance.getPort() + '\t' + instance.getUri());
 		}
 		return this.discoveryClient;
+	}
+
+	@GetMapping(value = "/payment/lb")
+	public String getPaymentLB() {
+		return serverPort;
+	}
+
+	@GetMapping(value = "/payment/feign/timeout")
+	public String paymentFeignTimeout() {
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return serverPort;
 	}
 
 }
