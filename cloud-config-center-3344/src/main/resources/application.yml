@@ -1,0 +1,38 @@
+server:
+  port: 3344
+spring:
+  # rabbitmq相关配置
+  rabbitmq:
+    host: 192.168.31.213
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/liumuge/sprincloud-config.git #填写你自己的github路径
+          search-paths:
+            - springcloud-config
+      # 读取分支
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+
+
+
+#rabbitmq相关配置,暴露bus刷新配置端点
+management:
+  endpoints: #暴露bus刷新配置端点
+    web:
+      exposure:
+        include: "bus-refresh"
+
+
+
+

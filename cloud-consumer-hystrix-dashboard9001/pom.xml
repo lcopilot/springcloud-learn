@@ -9,36 +9,40 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>cloud-providerconsul-payment8006</artifactId>
+  <artifactId>cloud-consumer-hystrix-dashboard9001</artifactId>
 
   <dependencies>
-    <!-- 引入自己定义的api通用包，可以使用Payment支付Entity -->
-    <dependency>
-      <groupId>com.atguigu.springcloud</groupId>
-      <artifactId>cloud-api-commons</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <!--SpringCloud consul-server -->
+    <!--新增hystrix dashboard
+    排除掉spring-cloud-starter-netflix-hystrix-dashboard 自带的spring-cloud-netflix-hystrix-dashboard的2.2.3，
+    然后自己引入2.2.2   2.2.3版本监控界面会一直load-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-cloud-netflix-hystrix-dashboard</artifactId>
+          <groupId>org.springframework.cloud</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- SpringBoot整合Web组件 -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-netflix-hystrix-dashboard</artifactId>
+      <version>2.2.2.RELEASE</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <!--日常通用jar包配置-->
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
